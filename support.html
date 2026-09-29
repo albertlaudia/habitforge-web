@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FAF5EF" />
+  <meta name="description" content="HabitForge Support — get help, report a bug, request a feature, or contact the developer." />
+  <meta name="robots" content="index,follow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://app.positiveness.club/habitforge/support" />
+  <title>Support · HabitForge</title>
+  <style>
+    :root {
+      --cream: #FAF5EF;
+      --ink: #3D3D3D;
+      --quiet: #757575;
+      --coral: #FFB5A7;
+      --coral-deep: #F8A09A;
+      --mint: #A5D6A7;
+      --mint-deep: #66BB6A;
+      --teal: #80CBC4;
+      --teal-deep: #4DB6AC;
+      --yellow: #FFE082;
+      --yellow-deep: #FFD54F;
+      --purple: #B39DDB;
+      --surface: #FFFCF8;
+      --surface-muted: #F3EBE4;
+      --outline: #E9DED5;
+      --shadow: rgba(255,181,167,0.15);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Nunito", "Helvetica Neue", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--coral-deep); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 120ms ease; }
+    a:hover { border-bottom-color: var(--coral-deep); }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 28px 24px 80px; }
+    .brand-row { display: flex; align-items: center; gap: 14px; padding: 12px 0 24px; }
+    .brand-mark {
+      width: 44px; height: 44px;
+      background: var(--coral);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px var(--shadow);
+      flex-shrink: 0;
+    }
+    .brand-mark svg { width: 28px; height: 28px; }
+    .brand-name { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
+    .brand-tag { font-size: 13px; color: var(--quiet); margin-top: 1px; }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin: 8px 0 12px;
+      font-weight: 800;
+    }
+    .lead {
+      font-size: 17.5px;
+      line-height: 1.55;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    h2 {
+      font-size: 22px;
+      margin: 36px 0 12px;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      scroll-margin-top: 16px;
+    }
+    h3 {
+      font-size: 17px;
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 16px; padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+    .tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 20px 22px;
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: 18px;
+      box-shadow: 0 2px 10px rgba(61,61,61,0.04);
+      color: var(--ink);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+    .tile:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(61,61,61,0.08);
+    }
+    .tile-icon {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 4px;
+    }
+    .tile-icon.coral { background: rgba(255,181,167,0.4); color: var(--coral-deep); }
+    .tile-icon.mint { background: rgba(165,214,167,0.4); color: var(--mint-deep); }
+    .tile-icon.teal { background: rgba(128,203,196,0.4); color: var(--teal-deep); }
+    .tile-icon.yellow { background: rgba(255,224,130,0.4); color: #C7A300; }
+    .tile-icon svg { width: 22px; height: 22px; }
+    .tile-title { font-weight: 700; font-size: 16px; }
+    .tile-sub { font-size: 13.5px; color: var(--quiet); }
+    .tile-cta {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--coral-deep);
+    }
+
+    .qa {
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 10px rgba(61,61,61,0.04);
+    }
+    .qa summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      list-style: none;
+      outline: none;
+      padding-right: 32px;
+      position: relative;
+    }
+    .qa summary::-webkit-details-marker { display: none; }
+    .qa summary::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: -2px;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--coral-deep);
+      line-height: 1;
+      transition: transform 160ms ease;
+    }
+    .qa[open] summary::after { content: '−'; }
+    .qa p { margin-top: 10px; margin-bottom: 0; color: var(--ink); }
+    .qa ul { margin-top: 8px; }
+
+    .contact-card {
+      background: linear-gradient(135deg, #FFE8DE 0%, #FFF6DE 100%);
+      border: 1px solid var(--surface);
+      border-radius: 20px;
+      padding: 26px 26px;
+      box-shadow: 0 12px 32px var(--shadow);
+      margin-bottom: 16px;
+    }
+    .contact-card p { margin-bottom: 6px; }
+    .contact-card strong { display: block; margin-bottom: 8px; font-size: 18px; }
+    .footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--outline);
+      font-size: 13px;
+      color: var(--quiet);
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;
+    }
+    .footer .links-foot a { color: var(--quiet); }
+    .footer .links-foot a:hover { color: var(--ink); }
+    @media (max-width: 540px) {
+      .wrap { padding: 20px 16px 60px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3 L25 21 L3 21 Z" fill="#3D3D3D" />
+          <circle cx="14" cy="16" r="3.2" fill="#FAF5EF" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">HabitForge</div>
+        <div class="brand-tag">Support</div>
+      </div>
+    </div>
+
+    <h1>Support</h1>
+    <p class="lead">HabitForge is built by a solo developer. The fastest way to get help is to email <a href="mailto:support@habitforge.app">support@habitforge.app</a> — I read every message personally and usually reply within 48 hours on weekdays.</p>
+
+    <h2 id="quick-help">Quick help</h2>
+    <div class="grid">
+      <a class="tile" href="mailto:support@habitforge.app?subject=Bug%20report">
+        <div class="tile-icon coral" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 v6"/>
+            <circle cx="12" cy="16.5" r="0.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="tile-title">Report a bug</div>
+        <div class="tile-sub">Something broke or behaves strangely. Send your device + app version and what you tapped.</div>
+        <span class="tile-cta">Email →</span>
+      </a>
+      <a class="tile" href="mailto:support@habitforge.app?subject=Feature%20request">
+        <div class="tile-icon mint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4 v16"/>
+            <path d="M4 12 h16"/>
+          </svg>
+        </div>
+        <div class="tile-title">Request a feature</div>
+        <div class="tile-sub">A habit type, a screen, a workflow — tell me what would make HabitForge yours.</div>
+        <span class="tile-cta">Email →</span>
+      </a>
+      <a class="tile" href="mailto:support@habitforge.app?subject=Restore%20purchase">
+        <div class="tile-icon teal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12 a9 9 0 1 0 3-6.7"/>
+            <path d="M3 3 v6 h6"/>
+          </svg>
+        </div>
+        <div class="tile-title">Restore a purchase</div>
+        <div class="tile-sub">Re-installing the app or switching devices? Your Lifetime unlock is tied to your store account.</div>
+        <span class="tile-cta">Email →</span>
+      </a>
+      <a class="tile" href="mailto:privacy@habitforge.app?subject=Data%20request">
+        <div class="tile-icon yellow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10" width="16" height="11" rx="2"/>
+            <path d="M8 10 V6 a4 4 0 0 1 8 0 v4"/>
+          </svg>
+        </div>
+        <div class="tile-title">Privacy or data request</div>
+        <div class="tile-sub">Ask what we hold, ask us to delete something, or raise a privacy concern.</div>
+        <span class="tile-cta">Email →</span>
+      </a>
+    </div>
+
+    <h2 id="faq">Frequently asked</h2>
+
+    <details class="qa">
+      <summary>Where is my habit data stored?</summary>
+      <p>Only on your device. The app uses an on-device encrypted Isar database. We do not collect your habit list, check-ins, or focus sessions on any server. Deleting the app deletes the local data permanently. You can export a JSON backup from <strong>Settings → Backup &amp; Restore</strong> any time.</p>
+    </details>
+
+    <details class="qa">
+      <summary>Do I need an account?</summary>
+      <p>No. The app works without any account, email, or login. There is no sign-up flow.</p>
+    </details>
+
+    <details class="qa">
+      <summary>I bought Premium on one device — can I use it on another?</summary>
+      <p>Yes. The Lifetime unlock is tied to your App Store or Play Store account. To restore:</p>
+      <ul>
+        <li><strong>iOS:</strong> open the App Store → tap your profile icon → tap your name → tap "Purchases" → find HabitForge → tap the cloud download icon.</li>
+        <li><strong>Android:</strong> open Play Store → tap your profile icon → tap "Payments &amp; subscriptions" → "Purchases" → find HabitForge → tap "Restore".</li>
+        <li>Inside HabitForge: <strong>Me → About HabitForge → Restore purchases</strong>.</li>
+      </ul>
+      <p>If restore does not work, email <a href="mailto:support@habitforge.app">support@habitforge.app</a> with your store receipt number and we will help.</p>
+    </details>
+
+    <details class="qa">
+      <summary>Reminders aren't firing — what should I check?</summary>
+      <ul>
+        <li>Confirm notifications are allowed for HabitForge in your device's system settings.</li>
+        <li>Open <strong>Me → Reminders</strong> in the app and use the "Send test reminder in 5 seconds" button to verify the channel is wired up.</li>
+        <li>Make sure the habit has at least one weekday selected (a habit with no scheduled days won't fire).</li>
+        <li>On Android 12 and above, exact alarms may be restricted. The app falls back to approximate scheduling automatically.</li>
+      </ul>
+    </details>
+
+    <details class="qa">
+      <summary>How do I move my data to a new phone?</summary>
+      <p>On the old phone, open <strong>Settings → Backup &amp; Restore → Export backup</strong>. Share the JSON file to yourself (AirDrop, email, iCloud Drive, Google Drive, etc). On the new phone, install HabitForge, then go to <strong>Settings → Backup &amp; Restore → Restore from backup</strong> and pick the file. The app will confirm how many habits, check-ins, and focus sessions will be restored before it overwrites the (empty) local data.</p>
+    </details>
+
+    <details class="qa">
+      <summary>Will there be a web version?</summary>
+      <p>Not in v1.0. The app is designed around on-device privacy and Live Activity-style phone integrations, so a web companion is not on the near roadmap. If a web companion is added later, it will be opt-in and end-to-end encrypted between your devices.</p>
+    </details>
+
+    <details class="qa">
+      <summary>Is HabitForge open source?</summary>
+      <p>The mobile app source is not public today. The privacy policy, terms of service, and this support site live at <a href="https://github.com/albertlaudia/habitforge-web">github.com/albertlaudia/habitforge-web</a>.</p>
+    </details>
+
+    <h2 id="contact">Contact</h2>
+    <div class="contact-card">
+      <strong>Talk to a person</strong>
+      <p>For bugs, feature requests, purchase help, or privacy questions, email <a href="mailto:support@habitforge.app">support@habitforge.app</a>.</p>
+      <p>For privacy-specific requests, use <a href="mailto:privacy@habitforge.app">privacy@habitforge.app</a> instead.</p>
+      <p>For press or partnership inquiries, use <a href="mailto:hello@habitforge.app">hello@habitforge.app</a>.</p>
+      <p style="margin-top: 14px; font-size: 14px; color: var(--quiet);">Replies usually arrive within 48 hours on weekdays. There is no support phone line — email is the fastest path.</p>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 HabitForge · One developer, one inbox, real replies.</div>
+      <div class="links-foot">
+        <a href="/habitforge/">Home</a> · <a href="/habitforge/privacy">Privacy</a> · <a href="/habitforge/terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

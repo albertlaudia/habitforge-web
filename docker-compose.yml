@@ -1,0 +1,21 @@
+services:
+  habitforge-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: habitforge-web:latest
+    container_name: habitforge-web
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:80/privacy.html || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  dokploy-network:
+    external: true
+    name: dokploy-network
