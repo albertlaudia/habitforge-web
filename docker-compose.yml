@@ -1,56 +1,13 @@
-# HabitForge web — pure runtime, no build needed.
-# Uses public nginx:alpine + downloads the HTML files from raw.githubusercontent.com at startup.
-# This avoids needing Dokploy to build anything — Dokploy only needs to `docker pull` + `docker run`.
-
 services:
   habitforge-web:
-    image: nginx:1.27-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: habitforge-web:latest
     container_name: habitforge-web
     restart: unless-stopped
     networks:
       - dokploy-network
-    # Override the default entrypoint to download files + write nginx config + start nginx
-    command: >-
-      sh -c "
-        set -e;
-        apk add --no-cache curl >/dev/null;
-        cd /usr/share/nginx/html;
-        for f in index privacy terms support; do
-          curl -fsSL https://raw.githubusercontent.com/albertlaudia/habitforge-web/main/$${f}.html -o $${f}.html || { echo 'Failed to download '$${f}'.html; exit 1; };
-        done;
-        curl -fsSL https://raw.githubusercontent.com/albertlaudia/habitforge-web/main/favicon.svg -o favicon.svg || true;
-        cat > /etc/nginx/conf.d/default.conf <<'NGINX_EOF'
-        server {
-          listen 80 default_server;
-          server_name _;
-          root /usr/share/nginx/html;
-          index index.html;
-          add_header X-Content-Type-Options 'nosniff' always;
-          add_header X-Frame-Options 'SAMEORIGIN' always;
-          add_header Referrer-Policy 'strict-origin-when-cross-origin' always;
-          add_header Content-Security-Policy \"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'\" always;
-          gzip on;
-          gzip_vary on;
-          gzip_min_length 256;
-          gzip_proxied any;
-          gzip_comp_level 6;
-          gzip_types text/plain text/css text/xml application/json application/javascript application/xml+rss image/svg+xml;
-          location = / { return 301 /index.html; }
-          location ~ ^/(privacy|terms|support)$ { try_files \$uri.html =404; }
-          location = /favicon.svg { add_header Cache-Control 'public, max-age=86400' always; try_files \$uri =404; }
-          location = /robots.txt { return 200 'User-agent: *\nAllow: /\n'; add_header Content-Type text/plain; }
-          location / { try_files \$uri \$uri/ \$uri.html =404; }
-          error_page 404 /index.html;
-        }
-        NGINX_EOF
-        exec nginx -g 'daemon off;'
-      "
-    healthcheck:
-      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:80/privacy.html || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 15s
 
 networks:
   dokploy-network:
