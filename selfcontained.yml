@@ -1,0 +1,22 @@
+services:
+  habitforge-web:
+    image: nginx:1.27-alpine
+    container_name: habitforge-web
+    restart: unless-stopped
+    # The whole boot script lives in a mounted file so Docker Compose has no
+    # "$" to interpolate. Compose would otherwise turn $f / $RAW into empty
+    # strings and the fetches would silently hit wrong URLs.
+    volumes:
+      - /etc/dokploy/habitforge-web/boot.sh:/tmp/boot.sh:ro
+      - habitforge-www:/srv/www
+    command: ["/bin/sh", "/tmp/boot.sh"]
+    networks:
+      - dokploy-network
+
+volumes:
+  habitforge-www:
+
+networks:
+  dokploy-network:
+    external: true
+    name: dokploy-network
